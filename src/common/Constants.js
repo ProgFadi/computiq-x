@@ -3,7 +3,6 @@ export const BASE_URL = "https://website-backend.computiq.tech";
 
 export const THEMES = {
     LIGHT: 'LIGHT',
-    ONE_DARK: 'ONE_DARK',
-    UNICORN: 'UNICORN'
+    ONE_DARK: 'ONE_DARK'
   };
   

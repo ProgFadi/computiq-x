@@ -56,7 +56,6 @@ const Account = () => {
       });
     }
   };
-  console.log('user in account js is : ',user)
   return (
     <>
       <Box
@@ -69,14 +68,14 @@ const Account = () => {
         <Avatar
           alt="User"
           className={classes.avatar}
-          src={user.user_info.image}
+          // src={user.user_info.image}
         />
         <Hidden smDown>
           <Typography
             variant="h6"
             color="inherit"
           >
-            {user.user_info.username}
+            {user.profile.user.first_name}
           </Typography>
         </Hidden>
       </Box>
@@ -94,13 +93,13 @@ const Account = () => {
       >
         <MenuItem
           component={RouterLink}
-          to="/app/social/profile"
+          to="/profile"
         >
           Profile
         </MenuItem>
         <MenuItem
           component={RouterLink}
-          to="/app/account"
+          to="account"
         >
           Account
         </MenuItem>

@@ -15,32 +15,22 @@ import React, {
     user: null
   };
   
-  const isValidToken = (accessToken) => {
-    console.log(accessToken)
-    if (!accessToken) {
+  const isValidToken = (tokenObj) => {
+    console.log(tokenObj)
+    if (!tokenObj) {
       return false;
     }
-    const decoded = jwtDecode(accessToken);
+    const decoded = jwtDecode(tokenObj.access_token);
     const currentTime = Date.now() / 1000;
     return decoded.exp > currentTime;
   };
   
-  const setSession = (accessToken) => {
-    if (accessToken) {
-      localStorage.setItem('accessToken', accessToken);
-      axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-    } else {
-      localStorage.removeItem('accessToken');
-      delete axios.defaults.headers.common.Authorization;
-    }
-  };
+ 
   const setSessionData = (data) => {
     if (data) {
-      console.log('user data saved', data)
       localStorage.setItem(SESSION_KEY, JSON.stringify(data));
       axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
     } else {
-      console.log('remove userData')
       localStorage.removeItem(SESSION_KEY);
       delete axios.defaults.headers.common.Authorization;
     }
@@ -109,7 +99,7 @@ import React, {
       console.log('response is',response)
       if(!response.data)
            return response
-      const { data } = response.data;
+      const data = response.data;
       // origin
       setSessionData(data)
       // setSession(data);

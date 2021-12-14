@@ -57,7 +57,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
       display="flex"
       flexDirection="column"
     >
-     <p>index of NavBar</p>
+   
     </Box>
   );
 

@@ -14,7 +14,6 @@ import {
 import { Menu as MenuIcon } from 'react-feather';
 import { THEMES } from '../../../common/Constants';
 import Account from './Account';
-import Search from './Search';
 import Settings from './Settings';
 
 const useStyles = makeStyles((theme) => ({
@@ -60,16 +59,12 @@ const TopBar = ({
             </SvgIcon>
           </IconButton>
         </Hidden>
-        <Hidden mdDown>
-          <RouterLink to="/board">
-           <h1>COMPUTIQ</h1>
-          </RouterLink>
-        </Hidden>
+       
         <Box
           ml={2}
           flexGrow={1}
         />
-        <Search />
+    
         <Settings />
         <Box ml={2}>
           <Account />
