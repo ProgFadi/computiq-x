@@ -5,6 +5,6 @@ export class LoginService extends BaseService {
         super('')
     }
     async login(body){
-        return await this.http.post("login",body)
+        return await this.http.post("/api/score/auth/login",body)
     }
 }
