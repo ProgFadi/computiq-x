@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@mui/styles';
-import { Box } from '@material-ui/core';
+// import { makeStyles } from '@mui/styles';
+import { Box,makeStyles } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import useAuth from '../hooks/useAuth';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
 const useStyles = makeStyles(()=>({
     root:{
@@ -39,9 +46,16 @@ const useStyles = makeStyles(()=>({
 }))
 function LoginView(props) {
     const classes = useStyles()
-    const {login} = useAuth()
+    const {login,error} = useAuth()
+   
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+    const auth =  (e)=>{
+        e.preventDefault(); 
+        login(email, password);
+
+       
+    }
     return (
        <Box
        className={classes.root}
@@ -54,10 +68,13 @@ function LoginView(props) {
                 <TextField onChange={(e)=>setPassword(e.target.value)} className={classes.field} type="password" id="password" label="Password" variant="standard" />
                </Box>
                
-                <Button onClick={(e)=>{e.preventDefault();login(email, password);}}  variant="contained">LOGIN</Button>
+                <Button onClick={auth}  variant="contained">LOGIN</Button>
 
                </form>
            </Box>
+         {
+             error &&   <Alert severity="error">{error.error.detail[0].msg}</Alert>
+         }
        </Box>
     );
 }

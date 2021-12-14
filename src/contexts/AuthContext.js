@@ -12,7 +12,8 @@ import React, {
   const initialAuthState = {
     isAuthenticated: false,
     isInitialised: false,
-    user: null
+    user: null,
+    error:null
   };
   
   const isValidToken = (tokenObj) => {
@@ -45,7 +46,8 @@ import React, {
           ...state,
           isAuthenticated,
           isInitialised: true,
-          user
+          user,
+          error:null
         };
       }
       case 'LOGIN': {
@@ -56,14 +58,16 @@ import React, {
         return {
           ...state,
           isAuthenticated: true,
-          user
+          user,
+          error:null
         };
       }
       case 'LOGOUT': {
         return {
           ...state,
           isAuthenticated: false,
-          user: null
+          user: null,
+          error:null
         };
       }
     
@@ -73,7 +77,7 @@ import React, {
         return {
           ...state,
           isAuthenticated: false,
-          errorMSG
+          error:errorMSG
         };
       }
       default: {
@@ -91,33 +95,73 @@ import React, {
   
   export const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialAuthState);
-  
-    const login = async (email, password) => {
-      
-      
-       const response = await (new LoginService).login({email,password});
-      console.log('response is',response)
-      if(!response.data)
-           return response
-      const data = response.data;
-      // origin
-      setSessionData(data)
-      // setSession(data);
-      console.log('after set session data,',data)
-      dispatch({
-        type: 'LOGIN',
-        payload: {
-          data
-        }
-      });
     
+    const login =  (email, password) =>{
+      axios.post('/api/score/auth/login',{
+        email:email,
+        password:password
+      })
+      .then((res)=>{
+        const data = res.data;
+    //     // origin
+        setSessionData(data)
+        // setSession(data);
+        console.log('after set session data,',data)
+        dispatch({
+          type: 'LOGIN',
+          payload: {
+            data
+          }
+        });
+      })
+      .catch((err)=>{
+        console.log(err)
+        dispatch({
+          type:'ERROR',
+          payload:{
+            error:err
+          }
+        })
+      })
+    }
+    // const login = async (email, password) => {
       
-       return response;
+    //   try{
+    //     const response = await (new LoginService).login({email,password});
+    //     console.log('response is',response)
+    //     if(!response.data)
+    //          return response
+    //     const data = response.data;
+    //     // origin
+    //     setSessionData(data)
+    //     // setSession(data);
+    //     console.log('after set session data,',data)
+    //     dispatch({
+    //       type: 'LOGIN',
+    //       payload: {
+    //         data
+    //       }
+    //     });
+      
+        
+    //      return response;
+    //   }
+    //   catch(err)
+    //   {
+    //     console.log('error caught',err)
+    //     dispatch({
+    //       type: 'ERROR',
+    //       payload: {
+    //         err
+    //       }
+    //     });
+    //   }
+      
       
       
   
      
-    };
+    // };
   
     const logout = () => {
       setSessionData(null);
