@@ -14,6 +14,23 @@ export const handleResponse = (err) => {
             console.log(resp)
             // window.location.href='/login'
             break;
+            case 422:
+            let msg = '';
+            console.log('err object: ',err.response)
+            let details = err.response.data.detail
+            if(details)
+            {
+                details.map((m)=>{
+                    msg = msg + ", "+m.msg
+                })
+            } 
+            resp = {
+                message:msg,
+                statusCode:err.response.status
+            } 
+            console.log('object created: ',resp)
+            // window.location.href='/login'
+            break;
 
             case 404:
             resp ={
@@ -27,6 +44,7 @@ export const handleResponse = (err) => {
     }
     else if(err.request)
     {
+        console.log(err.status)
         console.log("Error in the client side at request")
        
     }

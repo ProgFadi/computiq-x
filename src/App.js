@@ -7,12 +7,16 @@ import { createBrowserHistory } from 'history';
 const history = createBrowserHistory();
 
 function App() {
+
   return (
-    <Router history={history}>
+
+<Router history={history}>
       <AuthProvider>
         {renderRoutes(routes)}
       </AuthProvider>
     </Router>
+
+    
   );
 }
 

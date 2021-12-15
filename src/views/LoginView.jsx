@@ -47,7 +47,7 @@ const useStyles = makeStyles(()=>({
 function LoginView(props) {
     const classes = useStyles()
     const {login,error} = useAuth()
-   
+   console.log(' error is ',error)
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const auth =  (e)=>{
@@ -73,7 +73,7 @@ function LoginView(props) {
                </form>
            </Box>
          {
-             error &&   <Alert severity="error">{error.error.detail[0].msg}</Alert>
+             error &&   <Alert severity="error">{error}</Alert>
          }
        </Box>
     );

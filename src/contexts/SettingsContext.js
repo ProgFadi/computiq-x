@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import _ from 'lodash';
 import { THEMES } from '../common/Constants';
-
+// 1
 const defaultSettings = {
   direction: 'ltr',
   responsiveFontSizes: true,
@@ -33,7 +33,7 @@ export const restoreSettings = () => {
 export const storeSettings = (settings) => {
   window.localStorage.setItem('settings', JSON.stringify(settings));
 };
-
+// 2
 const SettingsContext = createContext({
   settings: defaultSettings,
   saveSettings: () => { }

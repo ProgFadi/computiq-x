@@ -73,11 +73,13 @@ import React, {
     
       case 'ERROR': {
         const errorMSG = action.payload;
-  
+
+        console.log('error dispatched')
+        console.log(errorMSG)
         return {
           ...state,
           isAuthenticated: false,
-          error:errorMSG
+          error:errorMSG.error.message
         };
       }
       default: {
@@ -97,12 +99,15 @@ import React, {
     const [state, dispatch] = useReducer(reducer, initialAuthState);
     
     const login =  (email, password) =>{
-      axios.post('/api/score/auth/login',{
+      (new LoginService).login({
         email:email,
         password:password
       })
       .then((res)=>{
-        const data = res.data;
+        console.log('response is: ',res)
+        if(res.status  == '200')
+        {
+          const data = res.data;
     //     // origin
         setSessionData(data)
         // setSession(data);
@@ -113,13 +118,27 @@ import React, {
             data
           }
         });
+        }
+        else{ // 404, 400,
+          let resp = handleResponse(res)
+          console.log('error of resp handler is : ')
+          console.log(resp)
+          dispatch({
+            type: 'ERROR',
+            payload: {
+              error:resp
+            }
+          });
+        }
+        
       })
       .catch((err)=>{
-        console.log(err)
+        let resp = handleResponse(err)
+        console.log('error caught: ',err)
         dispatch({
           type:'ERROR',
           payload:{
-            error:err
+            error:resp
           }
         })
       })
