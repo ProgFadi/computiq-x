@@ -23,7 +23,7 @@ const useStyles = makeStyles(()=>({
 }))
 
 
-export default function BoardItem(props) {
+export default function BoardItems(props) {
     const classes = useStyles()
     return (
         <>

@@ -1,23 +1,20 @@
-import { Box , makeStyles} from '@material-ui/core';
+import { makeStyles, Typography} from '@material-ui/core';
 import React, { useEffect, useState} from 'react';
 import { DashboradService } from '../services/Http/DashoardService';
 import Pagination from '@mui/material/Pagination';
-import BoardItem from '../components/BoardItem';
+import BoardItems from '../components/BoardItems';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import TaskItems from '../components/TaskItems'
 
 const useStyles = makeStyles((theme)=>({
     bg:{
-        margin: '10px auto',
+        backgroundColor: 'white',
         borderRadius: 20,
         boxSizing: 'border-box',
         padding: 20,
         border: '1px #1a8cf7 solid',
         boxShadow: '5px 5px 0 #1a8cf7',
-        [theme.breakpoints.down('md')]: {
-            width: '90%',
-          },
-        [theme.breakpoints.up('md')]: {
-            width: '50%',
-          },
     },
 
 
@@ -29,6 +26,7 @@ function BoardView(props) {
     const [page, setPage] = useState(1)
     const [pages, setPages] = useState(1)
     const [dataPaginate, setDataPaginate] = useState([])
+    const [tasks, setTasks] = useState([])
 
     const handleClick = (event, value)=> {
         let fromRecord = perPage * (value - 1)
@@ -41,22 +39,33 @@ function BoardView(props) {
     useEffect(()=>{
     
         (new DashboradService).loadPoints().then((res)=> {
-            let d = res.data.data
-            setData([...d])
-            setPages(Math.ceil(d.length/perPage))
-            setDataPaginate(d.slice(0,10))
+            let dataRes = res.data
+            let boardData = dataRes.data
+            let tasksData = dataRes.program.tasks
+            
+            setTasks(tasksData)
+            setData([...boardData])
+            setPages(Math.ceil(boardData.length/perPage))
+            setDataPaginate(boardData.slice(0,10))
         }).catch((err)=> console.log(err))
         
     },[])
 
     return (
-        <div>
-            <Box className={classes.bg}>
-                <BoardItem dataP={dataPaginate} data={data} />
-                <Pagination color="primary" count={pages} page={page} onChange={handleClick} />
-            </Box>
-           
-        </div>
+        <Container fixed>
+            <Grid container  mt={5} sx={{justifyContent:'space-between'}}>
+                <Grid item xs={12} md={7}>
+                    <Typography variant='h2' color='primary'>Computiq Score Board</Typography>
+                    <Typography variant='h5' >Full-Stack Development Bootcamp</Typography>
+                    <TaskItems tasks={tasks} />
+                </Grid>
+
+                <Grid item xs={12} md={4} className={classes.bg}>
+                    <BoardItems dataP={dataPaginate} data={data} />
+                    <Pagination color="primary" count={pages} page={page} onChange={handleClick} />
+                </Grid>
+            </Grid>
+        </Container>
     );
 }
 

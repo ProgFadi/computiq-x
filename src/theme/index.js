@@ -1,9 +1,12 @@
 
 
-import { createTheme } from '@mui/material/styles';
-import {  colors} from  '@material-ui/core';
 import _ from 'lodash'
 import {THEMES} from '../common/Constants'
+import {
+  colors,
+  createMuiTheme,
+  responsiveFontSizes
+} from '@material-ui/core';
 const themesOptions = [
   {
     name: THEMES.LIGHT,
@@ -102,7 +105,7 @@ const themesOptions = [
 const baseOptions = {
     direction:'ltr'
 }
-export const createCustomTheme = (config = {}) => {
+export const createTheme = (config = {}) => {
     let themeOptions = themesOptions.find((theme) => theme.name === config.theme);
     console.log('selected theme is ', themeOptions)  
     if (!themeOptions) {
@@ -110,7 +113,7 @@ export const createCustomTheme = (config = {}) => {
       [themeOptions] = themesOptions;
     }
     console.log('theme before update,' , themeOptions)
-    let theme = createTheme(
+    let theme = createMuiTheme(
       _.merge(
         {},
         baseOptions,
