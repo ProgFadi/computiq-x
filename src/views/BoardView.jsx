@@ -1,4 +1,4 @@
-import { makeStyles, Typography} from '@material-ui/core';
+import { makeStyles, Typography, Box} from '@material-ui/core';
 import React, { useEffect, useState} from 'react';
 import { DashboradService } from '../services/Http/DashoardService';
 import Pagination from '@mui/material/Pagination';
@@ -6,6 +6,7 @@ import BoardItems from '../components/BoardItems';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TaskItems from '../components/TaskItems'
+import CircularProgress from '@mui/material/CircularProgress';
 
 const useStyles = makeStyles((theme)=>({
     bg:{
@@ -52,7 +53,8 @@ function BoardView(props) {
     },[])
 
     return (
-        <Container fixed>
+        <Container fixed sx={dataPaginate.length==0 && {position: 'absolute', top: '50%', left: '50%', textAlign: 'center', transform: 'translate(-50%,-50%)'}}>
+            {dataPaginate.length==0?   <CircularProgress /> : 
             <Grid container  mt={5} sx={{justifyContent:'space-between'}}>
                 <Grid item xs={12} md={7}>
                     <Typography variant='h2' color='primary'>Computiq Score Board</Typography>
@@ -60,11 +62,13 @@ function BoardView(props) {
                     <TaskItems tasks={tasks} />
                 </Grid>
 
-                <Grid item xs={12} md={4} className={classes.bg}>
-                    <BoardItems dataP={dataPaginate} data={data} />
-                    <Pagination color="primary" count={pages} page={page} onChange={handleClick} />
+                <Grid item xs={12} md={4}>
+                    <Box className={classes.bg}>
+                        <BoardItems dataP={dataPaginate} data={data} />
+                        <Pagination color="primary" count={pages} page={page} onChange={handleClick} />
+                    </Box>
                 </Grid>
-            </Grid>
+            </Grid>}
         </Container>
     );
 }
