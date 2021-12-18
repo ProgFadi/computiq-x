@@ -4,7 +4,8 @@ import styled from "styled-components";
 import axiosInstance from "../utils/axios";
 import {SESSION_KEY} from "../common/Constants";
 import axios from "axios";
-// import Pagination from '../components/Pagination';
+import Pagination from '../components/Pagination';
+import Dashboard from '../components/DataApi'
 
 const Bodyd=styled.div`
   background-color:white;
@@ -33,7 +34,9 @@ const Rowdiv=styled.div`
 
 function BoardView(props) {
     const [dashboard, setdashboard] = useState([]);
-
+    const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [PerPage] = useState(10);
     // const apiToken =JSON.parse(localStorage.getItem(SESSION_KEY));
     const token='Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YjgyZjZjLTgwNmUtNGUwMy04NWRkLTU5NjVmZTc2MWY0ZiIsImV4cCI6MTY0NDc3OTI5OSwic3ViIjoiYWNjZXNzIn0.t8g0AmABZX15lcBvCKa5y3Cjc97rVPCX9CXEy2z2Kac';
 
@@ -46,32 +49,31 @@ function BoardView(props) {
                 const req=res.data.data;
                 console.log(res.data)
                 setdashboard(req);
-
+                setLoading(false);
 
             }
         )
     })
 
-
+    // Get current posts
+    const indexOfLast = currentPage * PerPage;
+    const indexOfFirst = indexOfLast- PerPage;
+    const current = dashboard.slice(indexOfFirst, indexOfLast);
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
         <div style={{background:'$F5F5F5'}}>
             <Bodyd>
-
                 <p style={{padding:'20px',fontSize:'20px'}}>SCORE BOARD</p>
-                {
-                    dashboard.map((item,index)=>
-                     <Rowdiv>
-
-                         <p>{item.user__first_name+'  '+item.user__last_name}</p>
-                         <p>{item.total_score} points</p>
-
-                     </Rowdiv>
-                        )
-                    }
-                    
-
+                <Dashboard dashboard={current}  loading={loading} />
+            <Pagination
+                PerPage={PerPage}
+                total={dashboard.length}
+                paginate={paginate}
+            />
             </Bodyd>
+
+
         </div>
     );
 }
