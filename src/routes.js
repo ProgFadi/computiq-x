@@ -5,7 +5,6 @@ import React, {
 } from 'react';
 import {
   Switch,
-  Redirect,
   Route
 } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout';
@@ -27,11 +26,11 @@ export const renderRoutes = (routes = []) => (
             path={route.path}
             exact={route.exact}
             render={(props) => (
-              
+
               <Guard>
                 <Layout>
-                
-                  <Component {...props} /> 
+
+                  <Component {...props} />
                 </Layout>
               </Guard>
             )}
@@ -58,7 +57,7 @@ export const routes = [
     exact: true,
     guard: AuthGuard,
     path: '/board',
-    layout:DashboardLayout,
+    layout: DashboardLayout,
     component: lazy(() => import('./views/BoardView'))
   }
 ];

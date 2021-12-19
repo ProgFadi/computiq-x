@@ -4,15 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { SnackbarProvider } from 'notistack';
-import {SettingsProvider} from './contexts/SettingsContext'
+import { SettingsProvider } from './contexts/SettingsContext'
 ReactDOM.render(
   <React.StrictMode>
-      <SnackbarProvider maxSnack={3}>
-        <SettingsProvider>
-          <App />
-        </SettingsProvider>
-     
-      </SnackbarProvider>
+    <SnackbarProvider maxSnack={3}>
+      <SettingsProvider>
+        <App />
+      </SettingsProvider>
+
+    </SnackbarProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

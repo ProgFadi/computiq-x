@@ -5,9 +5,9 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { createBrowserHistory } from "history";
 import { createTheme } from "./theme";
 import { create } from "jss";
-import rtl from "jss-rtl";
 import { useContext } from "react";
 import { jssPreset, StylesProvider, ThemeProvider } from "@material-ui/core";
+import rtl from "jss-rtl";
 import SettingsContext from './contexts/SettingsContext'
 const history = createBrowserHistory();
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
-import NavBar from './NavBar';
 import TopBar from './TopBar';
 
 const useStyles = makeStyles((theme) => ({

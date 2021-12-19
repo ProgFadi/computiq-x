@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -29,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     minHeight: 64
   },
-  logo:{
-    maxHeight:'40px',
-    maxWidth:'40px'
+  logo: {
+    maxHeight: '40px',
+    maxWidth: '40px'
   }
 }));
 
@@ -58,12 +57,12 @@ const TopBar = ({
             </SvgIcon>
           </IconButton>
         </Hidden>
-       
+
         <Box
           ml={2}
           flexGrow={1}
         />
-    
+
         <Settings />
         <Box ml={2}>
           <Account />
@@ -79,7 +78,7 @@ TopBar.propTypes = {
 };
 
 TopBar.defaultProps = {
-  onMobileNavOpen: () => {}
+  onMobileNavOpen: () => { }
 };
 
 export default TopBar;

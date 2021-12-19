@@ -3,7 +3,7 @@ import React from 'react';
 function ViewNotFound(props) {
     return (
         <div>
-           404 Not Found
+            404 Not Found
         </div>
     );
 }
