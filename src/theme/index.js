@@ -1,11 +1,8 @@
-
-
 import _ from 'lodash'
-import {THEMES} from '../common/Constants'
+import { THEMES } from '../common/Constants'
 import {
   colors,
   createMuiTheme,
-  responsiveFontSizes
 } from '@material-ui/core';
 const themesOptions = [
   {
@@ -34,7 +31,7 @@ const themesOptions = [
         main: '#00bbf0'//ex: top bar
       },
       secondary: {
-        main: '#fdb44b' // 
+        main: '#fdb44b' //
       },
       text: {
         primary: colors.blueGrey[900],
@@ -56,7 +53,7 @@ const themesOptions = [
       },
       background: {
         default: '#005792',
-        dark:'#f0f0f0',
+        dark: '#f0f0f0',
         paper: colors.common.white
       },
       primary: {
@@ -103,26 +100,25 @@ const themesOptions = [
 ];
 
 const baseOptions = {
-    direction:'ltr'
+  direction: 'ltr'
 }
 export const createTheme = (config = {}) => {
-    let themeOptions = themesOptions.find((theme) => theme.name === config.theme);
-    console.log('selected theme is ', themeOptions)  
-    if (!themeOptions) {
-      console.warn(new Error(`The theme ${config.theme} is not valid`));
-      [themeOptions] = themesOptions;
-    }
-    console.log('theme before update,' , themeOptions)
-    let theme = createMuiTheme(
-      _.merge(
-        {},
-        baseOptions,
-        themeOptions,
-        { direction: config.direction }
-      )
-    );
-
-    console.log('last theme object: ',theme)
-    return theme;
+  let themeOptions = themesOptions.find((theme) => theme.name === config.theme);
+  console.log('selected theme is ', themeOptions)
+  if (!themeOptions) {
+    console.warn(new Error(`The theme ${config.theme} is not valid`));
+    [themeOptions] = themesOptions;
   }
-  
+  console.log('theme before update,', themeOptions)
+  let theme = createMuiTheme(
+    _.merge(
+      {},
+      baseOptions,
+      themeOptions,
+      { direction: config.direction }
+    )
+  );
+
+  console.log('last theme object: ', theme)
+  return theme;
+}

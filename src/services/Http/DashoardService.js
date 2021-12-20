@@ -4,7 +4,7 @@ export class DashboradService extends BaseService {
     constructor() {
         super('')
     }
-    async loadPoints(){
-        return  await this.http.get("api/score/data/5")
+    async loadPoints() {
+        return await this.http.get("api/score/data/5")
     }
 }

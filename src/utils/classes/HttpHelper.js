@@ -4,7 +4,7 @@ import axios from '../axios'
 export class HttpService {
 
     headers = {
-        
+
     }
 
     constructor(url_prefix = "") {
@@ -17,7 +17,7 @@ export class HttpService {
             let response = await axios.get(this.getUrl(url) + this.mapQueryParams(queryParams), {
                 headers: this.headers
             })
-            
+
             return response
         } catch (error) {
             console.log(error)
@@ -27,11 +27,11 @@ export class HttpService {
 
     async post(url, body, queryParams = null) {
         try {
-            let response = await axios.post(this.getUrl(url) + this.mapQueryParams(queryParams),body ,{
+            let response = await axios.post(this.getUrl(url) + this.mapQueryParams(queryParams), body, {
                 method: "POST",
                 headers: this.headers
             })
-            
+
             return response
         } catch (error) {
             // console.log('error in response of axios is',error)
@@ -48,7 +48,7 @@ export class HttpService {
                 headers: this.headers,
                 body: JSON.stringify(body)
             })
-           
+
             return response
         } catch (error) {
             console.log(error);
@@ -62,7 +62,7 @@ export class HttpService {
                 method: "DELETE",
                 headers: this.headers
             })
-           
+
             return response
         } catch (error) {
             console.log(error)

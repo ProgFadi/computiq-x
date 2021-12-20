@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React, { useEffect } from 'react';
-import { useLocation, matchPath } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Box,
@@ -8,20 +8,6 @@ import {
   Hidden,
   makeStyles
 } from '@material-ui/core';
-import useAuth from '../../../hooks/useAuth';
-
-
-
-function renderNavItems({
-  items,
-  pathname,
-  depth = 0
-}) {
-  return (
-    <p></p>
-  );
-}
-
 
 const useStyles = makeStyles(() => ({
   mobileDrawer: {
@@ -42,7 +28,6 @@ const useStyles = makeStyles(() => ({
 const NavBar = ({ onMobileClose, openMobile }) => {
   const classes = useStyles();
   const location = useLocation();
-  const { user } = useAuth();
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
@@ -57,7 +42,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
       display="flex"
       flexDirection="column"
     >
-   
+
     </Box>
   );
 
