@@ -26,11 +26,11 @@ const isValidToken = (tokenObj) => {
   return decoded.exp > currentTime;
 };
 
-
 const setSessionData = (data) => {
   if (data) {
+    console.log('setting session data', data)
     localStorage.setItem(SESSION_KEY, JSON.stringify(data));
-    axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${data.token.access_token}`;
   } else {
     localStorage.removeItem(SESSION_KEY);
     delete axios.defaults.headers.common.Authorization;
@@ -99,13 +99,13 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialAuthState);
 
   const login = (email, password) => {
-    (new LoginService).login({
+    (new LoginService()).login({
       email: email,
       password: password
     })
       .then((res) => {
         console.log('response is: ', res)
-        if (res.status === '200') {
+        if (res.status.toString() === '200') {
           const data = res.data;
           //     // origin
           setSessionData(data)
@@ -143,7 +143,6 @@ export const AuthProvider = ({ children }) => {
       })
   }
   // const login = async (email, password) => {
-
   //   try{
   //     const response = await (new LoginService).login({email,password});
   //     console.log('response is',response)
@@ -160,8 +159,6 @@ export const AuthProvider = ({ children }) => {
   //         data
   //       }
   //     });
-
-
   //      return response;
   //   }
   //   catch(err)
@@ -180,7 +177,6 @@ export const AuthProvider = ({ children }) => {
     setSessionData(null);
     dispatch({ type: 'LOGOUT' });
   };
-
 
   useEffect(() => {
     const initialise = async () => {
@@ -243,5 +239,7 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export const AuthConsumer = AuthContext.Consumer;
 
 export default AuthContext;

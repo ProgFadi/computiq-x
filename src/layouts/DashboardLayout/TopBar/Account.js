@@ -56,6 +56,7 @@ const Account = () => {
       });
     }
   };
+
   return (
     <>
       <Box
@@ -66,9 +67,9 @@ const Account = () => {
         ref={ref}
       >
         <Avatar
-          alt="User"
+          alt="Person"
           className={classes.avatar}
-        // src={user.user_info.image}
+        // src={user.profile.photo}
         />
         <Hidden smDown>
           <Typography
