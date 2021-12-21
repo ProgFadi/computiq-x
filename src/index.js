@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { SnackbarProvider } from 'notistack';
 import {SettingsProvider} from './contexts/SettingsContext'
+import 'typeface-poppins'
 ReactDOM.render(
   <React.StrictMode>
       <SnackbarProvider maxSnack={3}>

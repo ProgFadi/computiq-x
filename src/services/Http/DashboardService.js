@@ -1,6 +1,6 @@
 import { BaseService } from "../../utils/classes/BaseHttp"
 
-export class DashboradService extends BaseService {
+export class DashboardService extends BaseService {
     constructor() {
         super('')
     }

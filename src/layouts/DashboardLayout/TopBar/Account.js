@@ -74,6 +74,7 @@ const Account = () => {
           <Typography
             variant="h6"
             color="inherit"
+            style={{fontFamily: 'poppins'}}
           >
             {user.profile.user.first_name}
           </Typography>

@@ -53,8 +53,6 @@ function LoginView(props) {
     const auth =  (e)=>{
         e.preventDefault(); 
         login(email, password);
-
-       
     }
     return (
        <Box

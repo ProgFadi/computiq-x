@@ -201,6 +201,7 @@ import React, {
           console.log(user)
           if (user && user.token && isValidToken(user.token)) {
             setSessionData(user);
+            console.log(user)
             dispatch({
               type: 'INITIALISE',
               payload: {
