@@ -12,8 +12,7 @@ import React, {
   const initialAuthState = {
     isAuthenticated: false,
     isInitialised: false,
-    user: null,
-    error:null
+    user: null
   };
   
   const isValidToken = (tokenObj) => {
@@ -46,8 +45,7 @@ import React, {
           ...state,
           isAuthenticated,
           isInitialised: true,
-          user,
-          error:null
+          user
         };
       }
       case 'LOGIN': {
@@ -58,28 +56,24 @@ import React, {
         return {
           ...state,
           isAuthenticated: true,
-          user,
-          error:null
+          user
         };
       }
       case 'LOGOUT': {
         return {
           ...state,
           isAuthenticated: false,
-          user: null,
-          error:null
+          user: null
         };
       }
     
       case 'ERROR': {
         const errorMSG = action.payload;
-
-        console.log('error dispatched')
-        console.log(errorMSG)
+  
         return {
           ...state,
           isAuthenticated: false,
-          error:errorMSG.error.message
+          errorMSG
         };
       }
       default: {
@@ -97,90 +91,33 @@ import React, {
   
   export const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialAuthState);
+  
+    const login = async (email, password) => {
+      
+      
+       const response = await (new LoginService).login({email,password});
+      console.log('response is',response)
+      if(!response.data)
+           return response
+      const data = response.data;
+      // origin
+      setSessionData(data)
+      // setSession(data);
+      console.log('after set session data,',data)
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          data
+        }
+      });
     
-    const login =  (email, password) =>{
-      (new LoginService).login({
-        email:email,
-        password:password
-      })
-      .then((res)=>{
-        console.log('response is: ',res)
-        if(res.status  == '200')
-        {
-          const data = res.data;
-    //     // origin
-        setSessionData(data)
-        // setSession(data);
-        console.log('after set session data,',data)
-        dispatch({
-          type: 'LOGIN',
-          payload: {
-            data
-          }
-        });
-        }
-        else{ // 404, 400,
-          let resp = handleResponse(res)
-          console.log('error of resp handler is : ')
-          console.log(resp)
-          dispatch({
-            type: 'ERROR',
-            payload: {
-              error:resp
-            }
-          });
-        }
-        
-      })
-      .catch((err)=>{
-        let resp = handleResponse(err)
-        console.log('error caught: ',err)
-        dispatch({
-          type:'ERROR',
-          payload:{
-            error:resp
-          }
-        })
-      })
-    }
-    // const login = async (email, password) => {
       
-    //   try{
-    //     const response = await (new LoginService).login({email,password});
-    //     console.log('response is',response)
-    //     if(!response.data)
-    //          return response
-    //     const data = response.data;
-    //     // origin
-    //     setSessionData(data)
-    //     // setSession(data);
-    //     console.log('after set session data,',data)
-    //     dispatch({
-    //       type: 'LOGIN',
-    //       payload: {
-    //         data
-    //       }
-    //     });
-      
-        
-    //      return response;
-    //   }
-    //   catch(err)
-    //   {
-    //     console.log('error caught',err)
-    //     dispatch({
-    //       type: 'ERROR',
-    //       payload: {
-    //         err
-    //       }
-    //     });
-    //   }
-      
+       return response;
       
       
   
      
-    // };
+    };
   
     const logout = () => {
       setSessionData(null);

@@ -18,6 +18,7 @@ import Settings from './Settings';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    zIndex: theme.zIndex.drawer + 100,
     ...theme.name === THEMES.LIGHT ? {
       boxShadow: 'none',
       backgroundColor: theme.palette.primary.main
