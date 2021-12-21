@@ -1,23 +1,23 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
-import { DashboradService } from '../services/Http/DashoardService';
-
-
-function BoardView(props) {
-    // data state/ points
-    // loading from 
-    // 
-    // 2
+import React, {useEffect, useState } from 'react';
+import styles from "../App.module.css";
+import Table from "../components/Table";
+function BoardView() {
+    const [pointsList, setpointsList] = useState(([]))
     useEffect(()=>{
-    
-      // update on point array
 
+        let webApiUrl =  'https://website-backend.computiq.tech/api/score/data/5';
+        let tokenStr = JSON.parse(localStorage.getItem('token'));
+        axios.get(webApiUrl, { headers: {"Authorization" : `${tokenStr.token.token_type} ${tokenStr.token.access_token}`} }).then((response)=>{
+            setpointsList(response.data.data)
+        })
     },[])
-    // 1
     return (
-        <div>
-           
+        <main className={styles.container}>
+        <div className={styles.wrapper}>
+          <Table data={pointsList} rowsPerPage={10} />
         </div>
+      </main>
     );
 }
 

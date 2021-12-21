@@ -1,0 +1,23 @@
+.table {
+    border-collapse: collapse;
+    border: none;
+    width: 70%;
+  }
+  
+  .tableHeader:last-child {
+    border-top-right-radius: 15px;
+  }
+  
+  .tableRowItems {
+    cursor: auto;
+  }
+  
+  .tableRowItems {
+    background-color: #f9f9f9;
+  }
+  
+  .tableCell {
+    padding: 12px;
+    font-size: 14px;
+    color: grey;
+  }
