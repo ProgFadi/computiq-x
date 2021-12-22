@@ -3,6 +3,7 @@ import {DashboardService} from '../services/Http/DashboardService';
 import { List, ListItem, ListItemIcon, ListItemText, makeStyles, Typography} from "@material-ui/core";
 import {Box, Stack} from "@mui/material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { IconButton } from '@mui/material';
 
 const useStyles = makeStyles(() => ({
     ParentContainer:{
@@ -12,29 +13,33 @@ const useStyles = makeStyles(() => ({
         flexDirection: 'row-reverse',
         borderRadius: '.5em',
         height: '80%' ,
-        width: '80%' ,
+        width: '90%' ,
         overflow: 'hidden',
         padding: '1em 1em 1.5em',
+        marginBottom: '2em'
     },
-        StudentPointsContainer:{
+    StudentPointsContainer:{
         backgroundColor: 'white',
         height: '100%' ,
-        width: '40%' ,
+        width: '42%' ,
         overflowY: 'auto',
-        padding: '1em 1em 1.5em',
+        padding: '1em .8em 1.5em',
+        marginRight: '.5em',
+        borderRadius: '.5em',
     },
     WeeksContainer:{
         height: '100%' ,
-        width: '60%' ,
+        width: '58%' ,
         overflowY: 'auto',
-        padding: '0 1em 1.5em',
+        padding: '0 1.5em 1.5em 0',
+        marginRight: '.5em'
     },
 
     HeaderBox: {
         display: 'flex',
         flexDirection: 'column',
         alignSelf: 'flex-start',
-        marginLeft: '9%'
+        marginLeft: '5%'
     },
     HeaderTypography: {
         color: '#262424',
@@ -47,6 +52,9 @@ const useStyles = makeStyles(() => ({
         padding: '0 10px 0 10px'
     },
     ListItem: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         backgroundColor: '#9d8ca9',
         margin: '.8em 0',
         borderRadius: '.5em',
@@ -63,14 +71,17 @@ const useStyles = makeStyles(() => ({
     TypographyPoints: {
         fontFamily: 'poppins'
     },
-     TypographyHead: {
+    TypographyHead: {
         color: '#262424',
         fontFamily: 'poppins',
-         marginBottom: '.5em'
+        marginBottom: '.5em'
     },
     ListWeekItem: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         backgroundColor: 'white',
-        margin: '.8em 0',
+        margin: '0 .8em 1em 0',
         borderRadius: '.5em',
         color: '#262424',
         boxShadow:' rgba(0, 0, 0, 0.16) 0px 1px 4px'
@@ -82,12 +93,12 @@ function BoardView() {
     const classes = useStyles()
 
     useEffect(() => {
-            (new DashboardService).loadPoints().then((res)=>{
-                console.log('response is: ',res.data.program.tasks)
-                console.log('response is: ',res.data.data)
-                setStudentsPoints(res.data.data)
-                setWeeksInfo(res.data.program.tasks)
-            })
+        (new DashboardService).loadPoints().then((res)=>{
+            console.log('response is: ',res.data.program.tasks)
+            console.log('response is: ',res.data.data)
+            setStudentsPoints(res.data.data)
+            setWeeksInfo(res.data.program.tasks)
+        })
             .catch((err)=>{
                 console.log('error is: ',err)
             })
@@ -118,7 +129,8 @@ function BoardView() {
                                     primary={obj.user__first_name+' '+obj.user__last_name}
                                 />
 
-                                <Typography className={classes.TypographyPoints}>{obj.total_score} <span style={{color: '#262424',}}>points</span></Typography>
+                                <Typography className={classes.TypographyPoints}>
+                                    {obj.total_score} <span style={{color: '#262424',}}>points</span></Typography>
                             </ListItem>
                         ))}
                     </List>
@@ -128,13 +140,11 @@ function BoardView() {
                     <List>
                         {weeksInfo.map((obj,index)=> (
                             <ListItem key={index} className={classes.ListWeekItem}>
-                                <Stack direction="row" spacing='1em' sx={{alignItems: 'center'}}>
                                     <ListItemText
                                         primaryTypographyProps={{ style: {fontFamily: 'poppins',}}}
                                         primary={obj.title}
                                     />
-                                    <ArrowDropDownIcon/>
-                                </Stack>
+                                    <IconButton><ArrowDropDownIcon/></IconButton>
                             </ListItem>
                         ))}
                     </List>
@@ -146,4 +156,3 @@ function BoardView() {
 }
 
 export default BoardView;
-

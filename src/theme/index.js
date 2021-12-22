@@ -31,7 +31,7 @@ const themesOptions = [
         paper: colors.common.white
       },
       primary: {
-        main: 'rgba(103,77,129,0.72)'//ex: top bar
+        main: 'rgba(103,77,129,0.35)'//ex: top bar
 
 
       },
