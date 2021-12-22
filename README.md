@@ -1,32 +1,57 @@
-# Task-09
-## TO DO:
-* Fork the repo
-* Clone the forked repo to your local machine
-* Resolve the task
-* Commit your solution
-* Push to GitHub
-* Create a pull request
+Getting Started with Create React App
+This project was bootstrapped with Create React App.
 
-Task Requirements, Hints and details:
-- Take a look at below sketched layout to understand the requirements.
-![Main](https://user-images.githubusercontent.com/20383171/144898668-3ba8dba8-804d-4e9f-a09c-ddfe916d8f5c.png)
+Available Scripts
+In the project directory, you can run:
 
-- Fetch products list from an API, render them on UI like what you did in previous task (with search functionalities), use this free API https://github.com/keikaavousi/fake-store-api
-- Protect Products page to be viewed by authorized users only. 
-- Enable functionality of "add to cart" button for each product card. when the user click on "add to cart" for each product, the product object should be added to a stored array in local storage.
-- Add cart icon besides Avatar component at App Bar.
-- Create a new page called 'cart'.
-- Enable "Cart icon" to be clickable component, once the user click on it, the page 'cart' should be displayed with rendering products that stored in local storage.
-- Enable "Remove" button for each cart product which is used for removing this item from array in local storage.
-- Implement Details Paper component.
+yarn start
+Runs the app in the development mode.
+Open http://localhost:3000 to view it in the browser.
 
+The page will reload if you make edits.
+You will also see any lint errors in the console.
 
-Hints:
-- Use axios package for fetching products from free API : https://github.com/keikaavousi/fake-store-api
-- Use the same card design that you used previously with some customization to view full details of a product.
-- Style components with MUI.
-- Use localstorage to save cart list, don't forget that you need to stringify object before saving it.
-- Product card in cart  page should have button with "remove" functionality instead of "add to cart".
-- Use MUI icons.
-- Use Box, Paper, Icons, Buttons, Textfield from MUI for easy implement.
-- Use sx and className to style your component.
+yarn test
+Launches the test runner in the interactive watch mode.
+See the section about running tests for more information.
+
+yarn build
+Builds the app for production to the build folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.
+Your app is ready to be deployed!
+
+See the section about deployment for more information.
+
+yarn eject
+Note: this is a one-way operation. Once you eject, you can’t go back!
+
+If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except eject will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+Learn More
+You can learn more in the Create React App documentation.
+
+To learn React, check out the React documentation.
+
+Code Splitting
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+Analyzing the Bundle Size
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+Making a Progressive Web App
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+Advanced Configuration
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+Deployment
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+yarn build fails to minify
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
