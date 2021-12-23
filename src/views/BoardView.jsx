@@ -61,15 +61,19 @@ const useStyles = makeStyles(() => ({
     },
     ListItemIcon: {
         fontSize: '24px',
-        color: '#262424',
+        // color: '#262424',
+        color: 'white',
         fontWeight: 'bold'
     },
     TypographyIndex: {
-        color: '#262424',
+        // color: '#262424',
+        color: 'white',
         fontFamily: 'poppins'
+
     },
     TypographyPoints: {
-        fontFamily: 'poppins'
+        fontFamily: 'poppins',
+        color: 'white'
     },
     TypographyHead: {
         color: '#262424',
@@ -125,12 +129,12 @@ function BoardView() {
                                 </Stack>
 
                                 <ListItemText
-                                    primaryTypographyProps={{ style: {fontFamily: 'poppins',}}}
+                                    primaryTypographyProps={{ style: {fontFamily: 'poppins',color: 'white'}}}
                                     primary={obj.user__first_name+' '+obj.user__last_name}
                                 />
 
                                 <Typography className={classes.TypographyPoints}>
-                                    {obj.total_score} <span style={{color: '#262424',}}>points</span></Typography>
+                                    {obj.total_score} <span style={{color: 'white',}}>points</span></Typography>
                             </ListItem>
                         ))}
                     </List>
