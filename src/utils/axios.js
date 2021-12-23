@@ -22,7 +22,9 @@ function checkSession() {
 if (checkSession()) {
   let sessionData = getSession();
   console.log('local storage: ',sessionData)
-  let apiToken = sessionData.token
+  let apiToken = sessionData.token.access_token
+  console.log(apiToken)
   axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${apiToken}`;
 }
 export default axiosInstance;
+
