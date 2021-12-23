@@ -4,8 +4,8 @@ import { SESSION_KEY, BASE_URL} from "../common/Constants";
 const axiosInstance = axios.create();
 axiosInstance.defaults.baseURL=BASE_URL;
 axiosInstance.interceptors.response.use(
-  (response) => response,
-  (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong')
+  (response) => response
+  // ,(error) => Promise.reject((error.response && error.response.data) || 'Something went wrong')
 );
 
 function getSession() {

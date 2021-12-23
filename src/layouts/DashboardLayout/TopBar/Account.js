@@ -99,7 +99,7 @@ const Account = () => {
         </MenuItem>
         <MenuItem
           component={RouterLink}
-          to="account"
+          to="/account"
         >
           Account
         </MenuItem>
