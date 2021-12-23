@@ -30,7 +30,6 @@ export const renderRoutes = (routes = []) => (
               
               <Guard>
                 <Layout>
-                
                   <Component {...props} /> 
                 </Layout>
               </Guard>
@@ -60,7 +59,15 @@ export const routes = [
     path: '/board',
     layout:DashboardLayout,
     component: lazy(() => import('./views/BoardView'))
-  }
+  },
+  {
+    exact: true,
+    guard: AuthGuard,
+    path: '/dashboard',
+    layout:DashboardLayout,
+    component: lazy(() => import('./views/BoardView'))
+  },
+
 ];
 
 export default routes;

@@ -31,10 +31,12 @@ const themesOptions = [
         paper: colors.common.white
       },
       primary: {
-        main: '#00bbf0'//ex: top bar
+        main: 'rgba(103,77,129,0.35)'//ex: top bar
+
+
       },
       secondary: {
-        main: '#fdb44b' // 
+        main: '#ffa635' //
       },
       text: {
         primary: colors.blueGrey[900],
