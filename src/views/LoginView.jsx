@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import useAuth from '../hooks/useAuth';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-
+import { Redirect } from "react-router-dom";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -71,6 +71,7 @@ function LoginView(props) {
                 <Button onClick={auth}  variant="contained">LOGIN</Button>
 
                </form>
+               
            </Box>
          {
              error &&   <Alert severity="error">{error}</Alert>
