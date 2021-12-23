@@ -30,7 +30,7 @@ import React, {
   const setSessionData = (data) => {
     if (data) {
       localStorage.setItem(SESSION_KEY, JSON.stringify(data));
-      axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+      axios.defaults.headers.common.Authorization = `Bearer ${data.token.access_token}`;
     } else {
       localStorage.removeItem(SESSION_KEY);
       delete axios.defaults.headers.common.Authorization;
