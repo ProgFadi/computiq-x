@@ -6,9 +6,9 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const Week = (props) => {
+
     return (
         <div>
-            {/* style={{'max-width': "80vh"}} */}
             {props.tasks.map(task => {
                 return (
                     <Accordion>

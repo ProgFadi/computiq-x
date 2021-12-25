@@ -1,12 +1,27 @@
-import { Box, Card, CircularProgress, Container, Grid, Typography } from '@material-ui/core';
+import { Box, Card, CircularProgress, Container, Grid, makeStyles, Typography } from '@material-ui/core';
 import { Pagination } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Week from '../components/week';
 import DashboradService from '../services/Http/DashoardService';
-// import DenseTable from './BoardPoints'
 import BoardPoints from './BoardPoints'
 
+const useStyles = makeStyles({
+    boardTitle: {
+        color: '#1a8cf7',
+        display: 'block',
+        fontSize: '2.5rem',
+        fontFamily: "Metropolis-Bold",
+        margin: '15px 0px'
+    },
+    courseTitle: {
+        fontSize: '1.5rem',
+        color: '#575756'
+    }
+});
+
 function BoardView(props) {
+    const classes = useStyles();
+
     const [title, setTitle] = useState('');
     const [data, setData] = useState([]);
     const [pages, setPages] = useState(0);
@@ -38,17 +53,16 @@ function BoardView(props) {
     
         return (
             <div>
-                    {/* <DenseTable /> */}
         <Container maxWidth="xl" display="flex" flexDirection='row'>
             <Grid container spacing={3} paddingY={5} display="flex" justifyContent="space-around" >
                 {data.length > 0 ? (
                     <>
                         <Grid item xs={4}>
                             <Card>
-                                <Typography variant="h3" p={3}>
+                                <Typography variant="h3" color='' p={3} className={classes.boardTitle}>
                                     Computiq Score Board
                                 </Typography>
-                                <Typography variant="h6" p={3}>
+                                <Typography variant="h6" className='courseTitle' p={3}>
                                     {title}
                                 </Typography>
 
