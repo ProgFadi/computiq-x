@@ -1,13 +1,5 @@
-import React, {
-  Suspense,
-  Fragment,
-  lazy
-} from 'react';
-import {
-  Switch,
-  Redirect,
-  Route
-} from 'react-router-dom';
+import React, { Suspense, Fragment, lazy } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout';
 import LoadingScreen from './components/LoadingScreen';
 import AuthGuard from './components/guards/AuthGuard';
@@ -60,7 +52,15 @@ export const routes = [
     path: '/board',
     layout:DashboardLayout,
     component: lazy(() => import('./views/BoardView'))
+  },
+  {
+    exact: true,
+    guard: AuthGuard,
+    path: '/',
+    layout:DashboardLayout,
+    component: lazy(() => import('./views/BoardView'))
   }
+
 ];
 
 export default routes;

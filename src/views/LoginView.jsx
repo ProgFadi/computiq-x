@@ -4,6 +4,7 @@ import { Box,makeStyles } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import useAuth from '../hooks/useAuth';
+<<<<<<< HEAD
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
@@ -11,6 +12,14 @@ import MuiAlert from '@mui/material/Alert';
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
+=======
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+  
+>>>>>>> ddf1cb0 (initial working)
 
 const useStyles = makeStyles(()=>({
     root:{
@@ -72,9 +81,13 @@ function LoginView(props) {
 
                </form>
            </Box>
+<<<<<<< HEAD
          {
              error &&   <Alert severity="error">{error}</Alert>
          }
+=======
+           {/* <Alert severity="error">This is an error message!</Alert> */}
+>>>>>>> ddf1cb0 (initial working)
        </Box>
     );
 }

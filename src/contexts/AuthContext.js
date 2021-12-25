@@ -1,15 +1,12 @@
-import React, {
-    createContext,
-    useEffect,
-    useReducer
-  } from 'react';
-  import jwtDecode from 'jwt-decode';
-  import LoadingScreen from '../components/LoadingScreen';
-  import axios from '../utils/axios';
-  import { LoginService } from '../services/Http/LoginService';
-  import { handleResponse } from '../utils/responseHandler';
-  import {SESSION_KEY} from '../common/Constants'
-  const initialAuthState = {
+import React, { createContext, useEffect, useReducer} from 'react';
+import jwtDecode from 'jwt-decode';
+import LoadingScreen from '../components/LoadingScreen';
+import axios from '../utils/axios';
+import { LoginService } from '../services/Http/LoginService';
+import { handleResponse } from '../utils/responseHandler';
+import {SESSION_KEY} from '../common/Constants'
+
+const initialAuthState = {
     isAuthenticated: false,
     isInitialised: false,
     user: null,
@@ -97,6 +94,7 @@ import React, {
   
   export const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialAuthState);
+<<<<<<< HEAD
     
     const login =  (email, password) =>{
       (new LoginService).login({
@@ -181,6 +179,29 @@ import React, {
   
      
     // };
+=======
+  
+    const login = async (email, password) => {
+      const response = await (new LoginService).login({email,password});
+      console.log('response is',response)
+      if(!response.data)
+           return response
+      const data = response.data;
+      // origin
+      setSessionData(data)
+      // setSession(data);
+      console.log('after set session data,',data)
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          data
+        }
+      });
+
+      return response;  
+
+    };
+>>>>>>> ddf1cb0 (initial working)
   
     const logout = () => {
       setSessionData(null);
