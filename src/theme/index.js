@@ -1,12 +1,7 @@
-
-
 import _ from 'lodash'
 import {THEMES} from '../common/Constants'
-import {
-  colors,
-  createMuiTheme,
-  responsiveFontSizes
-} from '@material-ui/core';
+import {colors, createMuiTheme} from '@material-ui/core';
+
 const themesOptions = [
   {
     name: THEMES.LIGHT,
