@@ -39,13 +39,6 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className={classes.root}>
       <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
-<<<<<<< HEAD
-      {/* <NavBar
-        onMobileClose={() => setMobileNavOpen(false)}
-        openMobile={isMobileNavOpen}
-      /> */}
-=======
->>>>>>> ddf1cb0 (initial working)
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
           <div className={classes.content}>

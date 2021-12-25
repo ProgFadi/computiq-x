@@ -1,25 +1,13 @@
 import React, { useState } from 'react';
-// import { makeStyles } from '@mui/styles';
 import { Box,makeStyles } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import useAuth from '../hooks/useAuth';
-<<<<<<< HEAD
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
-=======
 import MuiAlert from '@mui/material/Alert';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
-  
->>>>>>> ddf1cb0 (initial working)
 
 const useStyles = makeStyles(()=>({
     root:{
@@ -62,33 +50,28 @@ function LoginView(props) {
     const auth =  (e)=>{
         e.preventDefault(); 
         login(email, password);
-
-       
     }
     return (
        <Box
-       className={classes.root}
-       >
+           className={classes.root}>
            <Box className={classes.loginBox}>
                <form className={classes.form}>
                
                <Box>
-               <TextField onChange={(e)=>setEmail(e.target.value)} className={classes.field} type="email" id="email" label="Email" variant="standard" />
-                <TextField onChange={(e)=>setPassword(e.target.value)} className={classes.field} type="password" id="password" label="Password" variant="standard" />
+                    <TextField onChange={(e)=>setEmail(e.target.value)} 
+                        className={classes.field} type="email" id="email" label="Email" variant="standard" />
+                    <TextField onChange={(e)=>setPassword(e.target.value)} 
+                        className={classes.field} type="password" id="password" label="Password" variant="standard" />
                </Box>
                
                 <Button onClick={auth}  variant="contained">LOGIN</Button>
 
                </form>
-           </Box>
-<<<<<<< HEAD
-         {
-             error &&   <Alert severity="error">{error}</Alert>
-         }
-=======
-           {/* <Alert severity="error">This is an error message!</Alert> */}
->>>>>>> ddf1cb0 (initial working)
-       </Box>
+            </Box>
+            {
+            error && <Alert severity="error">{error}</Alert>
+            }
+        </Box>
     );
 }
 

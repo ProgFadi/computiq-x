@@ -1,6 +1,6 @@
 import { BaseService } from "../../utils/classes/BaseHttp"
 
-export class DashboradService extends BaseService {
+class DashboradService extends BaseService {
     constructor() {
         super('')
     }
@@ -8,3 +8,5 @@ export class DashboradService extends BaseService {
         return  await this.http.get("api/score/data/5")
     }
 }
+
+export default DashboradService;
